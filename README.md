@@ -26,3 +26,12 @@ You can check out the [create-t3-app GitHub repository](https://github.com/t3-os
 ## How do I deploy this?
 
 Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+
+## Prisma Migrate
+Please use `DATABASE_URL="file:./db.sqlite" npx prisma migrate dev` to apply Migrations on local dev for now.
+
+If you want to create a migration please use `DATABASE_URL="file:./db.sqlite" npx prisma migrate dev --name #MIGRATIONNAME#`
+
+## TRPC API
+
+You can see all tRPC routes on `http://localhost:3000/api/panel`
