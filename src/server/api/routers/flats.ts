@@ -18,7 +18,7 @@ export const flatsRouter = createTRPCRouter({
 
       return flats;
     }),
-  getOne: protectedProcedure
+  getFlatById: protectedProcedure
     .meta({ description: "Returns a specific Flat" })
     .input(
       z.object({
@@ -27,10 +27,28 @@ export const flatsRouter = createTRPCRouter({
     )
     .query(async ({ input, ctx }) => {
       const { flatId } = input;
+      const { id: userId } = ctx.session.user;
+
+      const isMember = await prisma.flatMember.findFirst({
+        where: {
+          flatId,
+          memberId: userId,
+        },
+      });
+
+      if (isMember) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Not a member of this Flat",
+        });
+      }
 
       const flat = await ctx.prisma.flat.findUnique({
         where: {
           id: flatId,
+        },
+        include: {
+          members: true,
         },
       });
 
@@ -57,7 +75,7 @@ export const flatsRouter = createTRPCRouter({
       return createFlat;
     }),
   updateFlat: protectedProcedure
-    .meta({ description: "Updates a Flat" })
+    .meta({ description: "Updates a Flat - Only Owner" })
     .input(
       z.object({
         id: z.string().cuid(),
@@ -104,7 +122,7 @@ export const flatsRouter = createTRPCRouter({
       return updatedFlat;
     }),
   addUserToFlat: protectedProcedure
-    .meta({ description: "Adds a Flat Member" })
+    .meta({ description: "Adds a Flat Member - Only Owner" })
     .input(
       z.object({
         flatId: z.string().cuid(),
@@ -151,7 +169,7 @@ export const flatsRouter = createTRPCRouter({
       return newMember;
     }),
   removeUserFromFlat: protectedProcedure
-    .meta({ description: "Removes a Flat Member" })
+    .meta({ description: "Removes a Flat Member - Only Owner" })
     .input(z.object({ flatId: z.string(), memberId: z.string() }))
     .mutation(async ({ input, ctx }) => {
       const { flatId, memberId } = input;
