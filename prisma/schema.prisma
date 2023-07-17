@@ -63,6 +63,8 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+//  Flat Tables
+
 model Flat {
     id       String       @id @default(cuid())
     flatName String
@@ -79,4 +81,18 @@ model FlatMember {
     member   User   @relation(fields: [memberId], references: [id])
 
     @@unique([flatId, memberId])
+}
+
+// Calendar Tables
+
+model CalendarEvent {
+    id          String   @id @default(cuid())
+    title       String
+    date        DateTime
+    description String?
+    reminder    Boolean
+    flatId      String
+
+    // Compound index on flatId and date fields
+    @@index([flatId, date])
 }
