@@ -212,4 +212,45 @@ export const flatsRouter = createTRPCRouter({
 
       return deletedMember;
     }),
+  deleteFlat: protectedProcedure
+    .meta({ description: "Deletes a Flat" })
+    .input(z.object({ flatId: z.string().cuid() }))
+    .mutation(async ({ input, ctx }) => {
+      const { flatId } = input;
+      const { id: userId } = ctx.session.user;
+
+      const flat = await prisma.flat.findUnique({
+        where: { id: flatId },
+        include: { owner: true },
+      });
+
+      if (!flat) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Flat not found",
+        });
+      }
+
+      if (flat.ownerId !== userId) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "You are not the Owner",
+        });
+      }
+
+      const deletedMember = await ctx.prisma.flat.delete({
+        where: {
+          id: flatId,
+        },
+      });
+
+      if (!deletedMember) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Could not Remove Flat Member",
+        });
+      }
+
+      return deletedMember;
+    }),
 });
