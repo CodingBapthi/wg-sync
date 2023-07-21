@@ -5,21 +5,48 @@
 ## What is this?
 Diese App soll dazu dienen Aufgaben und Termine die in einer WG anfallen zu Organisieren.
 
-## Was kann die App?
+## Features der App
+* Kalender
+  * Putzplan
+  * Müllplan
+  * Gemeinsame Aktivitäten
+* Einkaufslisten
+* WG-Konto Verwaltung
+* Nutzerverwaltung
+* Benachrichtigungen
+* Responsive Design
 
-- [x] Projektinitialisierung
-- [ ] Komponenten für den Kalender erstellen
-- [ ] Funktionalität für die Putzplanung implementieren
-- [ ] Müllplan-Funktion hinzufügen
-- [ ] Einkaufslistenverwaltung mit WG-Konto verbinden
-- [ ] Benutzerauthentifizierung implementieren
-- [ ] WG-Erstellung und Einladungen ermöglichen
-- [ ] Backend mit MongoDB einrichten
-- [ ] Datenbankzugriff in der App integrieren
-- [ ] Responsives Design für verschiedene Geräte anpassen
-- [ ] Tests schreiben und durchführen
-- [ ] Dokumentation vervollständigen
-- [ ] App bereitstellen und veröffentlichen
+## ToDo für die App (Funktionen)
+
+- [ ] WG-Listen
+  - [ ] Einkaufslisten
+    - [ ] Einkaufslisten erstellen
+    - [ ] Einkaufslisten bearbeiten
+    - [ ] Einkaufslisten löschen
+  - [ ] ToDo-Listen
+    - [ ] ToDo-Listen erstellen
+    - [ ] ToDo-Listen bearbeiten
+    - [ ] ToDo-Listen löschen
+- [ ] Kalender mit Terminen für (z.B. Müllabfuhr, Putzplan, Gemeinsame Aktivitäten)
+  - [ ] Müllabfuhr
+    - [ ] Müllplan
+    - [ ] Erinnerungsfunktion
+  - [ ] Putzplan
+    - [ ] Putzplan
+      - [ ] ToDo-Liste
+      - [ ] Erinnerungsfunktion
+  - [ ] Gemeinsame Aktivitäten
+    - [ ] Kalender
+    - [ ] Erinnerungsfunktion
+- [ ] WG-Konto Verwaltung
+  - [ ] Monatliche Kosten
+  - [ ] Erinnerungsfunktion
+  - [ ] Einkaufslisten mit WG-Konto verbinden
+- [ ] Nutzerverwaltung
+  - [ ] Benutzer erstellen
+  - [ ] Benutzer einladen
+  - [ ] Benutzer entfernen
+  - [ ] Benutzerrechte verwalten
 
 ## Setup
 `cp .env.example .env` Fill out .env file
