@@ -13,13 +13,7 @@ const LoggedInLayout = ({ children }: PropsWithChildren) => {
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
           WG <span className="text-[hsl(280,100%,70%)]">-</span> Sync
         </h1>
-        <button
-          className="w-3/12 rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-          onClick={() => void signOut()}
-        >
-          {" "}
-          Sign Out
-        </button>
+
         <div className="flex flex-1 flex-col overflow-hidden">{children}</div>
       </main>
     </>
