@@ -16,8 +16,17 @@ Diese App soll dazu dienen Aufgaben und Termine die in einer WG anfallen zu Orga
 * Benachrichtigungen
 * Responsive Design
 
-## ToDo für die App (Funktionen)
-
+## ToDo für die App ( Funktionen )
+- Navigation
+- Dashboard
+  - [ ] Dashboard erstellen
+  - [ ] Dashboard anzeigen
+  - [ ] Dashboard löschen
+- [ ] Wohnung
+  - [ ] erstellen
+  - [ ] im Dashboard anzeigen
+  - [ ] bearbeiten 
+  - [ ] löschen
 - [ ] WG-Listen
   - [ ] Einkaufslisten
     - [ ] Einkaufslisten erstellen
@@ -57,6 +66,8 @@ Diese App soll dazu dienen Aufgaben und Termine die in einer WG anfallen zu Orga
 `npx prisma migrate dev` Applies all migrations
 
 `npx prisma migrate dev --name #MIGRATIONNAME#` Generate a Migration with a Name
+
+`npx prisma studio` Open Prisma Studio Server to Explore the Database
 
 ## TRPC API Panel
 
