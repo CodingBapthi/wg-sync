@@ -2,14 +2,13 @@ import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 export default function LoginPage() {
-  const { data: sessionData, status } = useSession();
+  const { status } = useSession();
   const router = useRouter();
   const handleSignIn = async () => {
     if (status === "unauthenticated") {
       await signIn();
     }
   };
-  console.log("Router", router);
   useEffect(() => {
     if (status === "authenticated") {
       router.push("/dashboard").catch((error) => {

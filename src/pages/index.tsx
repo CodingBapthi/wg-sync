@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import HomePage from "~/pages/homePage";
+import Dashboard from "~/pages/dashboard";
 
 export default function Home() {
   const { data: sessionData, status } = useSession();
@@ -15,4 +15,10 @@ export default function Home() {
     });
     return null;
   }
+
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
 }
