@@ -9,11 +9,10 @@ const LoggedInLayout = ({ children }: PropsWithChildren) => {
       <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
         <Navigation />
       </header>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
+      <main className="flex min-h-screen w-1/3 flex-col items-center justify-center bg-gradient-to-b from-[#ffeeff] to-[#15162c]">
         <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
           WG <span className="text-[hsl(280,100%,70%)]">-</span> Sync
         </h1>
-
         <div className="flex flex-1 flex-col overflow-hidden">{children}</div>
       </main>
     </>
