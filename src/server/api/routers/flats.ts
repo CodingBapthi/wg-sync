@@ -72,6 +72,13 @@ export const flatsRouter = createTRPCRouter({
         },
       });
 
+      await ctx.prisma.flatMember.create({
+        data: {
+          flatId: createFlat.id,
+          memberId: userId,
+        },
+      });
+
       return createFlat;
     }),
   updateFlat: protectedProcedure
