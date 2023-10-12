@@ -1,4 +1,5 @@
 import { flatsRouter } from "~/server/api/routers/flats";
+import { calendarRouter } from "~/server/api/routers/calendar";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -8,6 +9,7 @@ import { createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   flats: flatsRouter,
+  calendar: calendarRouter,
 });
 
 // export type definition of API

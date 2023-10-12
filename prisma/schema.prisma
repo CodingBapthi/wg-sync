@@ -43,16 +43,17 @@ model Session {
 }
 
 model User {
-    id            String       @id @default(cuid())
-    name          String?
-    email         String?      @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    isOwner       Boolean?     @default(false)
-    flats         FlatMember[]
-    ownedFlats    Flat[]
+    id             String          @id @default(cuid())
+    name           String?
+    email          String?         @unique
+    emailVerified  DateTime?
+    image          String?
+    accounts       Account[]
+    sessions       Session[]
+    isOwner        Boolean?        @default(false)
+    flats          FlatMember[]
+    ownedFlats     Flat[]
+    authoredEvents CalendarEvent[]
 }
 
 model VerificationToken {
@@ -62,6 +63,8 @@ model VerificationToken {
 
     @@unique([identifier, token])
 }
+
+//  Flat Tables
 
 model Flat {
     id       String       @id @default(cuid())
@@ -79,4 +82,23 @@ model FlatMember {
     member   User   @relation(fields: [memberId], references: [id])
 
     @@unique([flatId, memberId])
+}
+
+// Calendar Tables
+
+// File: schema.prisma
+model CalendarEvent {
+    id          String   @id @default(cuid())
+    title       String
+    startDate   DateTime
+    endDate     DateTime
+    description String?
+    reminder    Boolean
+    flatId      String
+    authorId    String?
+
+    author User? @relation(fields: [authorId], references: [id])
+
+    // Compound index on flatId, startDate, and endDate fields
+    @@index([flatId, startDate, endDate])
 }
